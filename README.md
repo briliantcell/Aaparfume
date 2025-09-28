@@ -1,2 +1,467 @@
-# Aaparfume
-website resmi Aa parfume yang menampilkan katalog parfume lengkap dengan deskripsi aroma, ukuran, dan harga.Dapatkan informasi promo, kisah brand Aa parfume, serta pembelian mudah melalui klik BELI DI SHOPEE
+<!doctype html>
+<html lang="id">
+<head>
+  <meta name="google-site-verification" content="6lu_iWbRuMJTEYXLJ7ghi3cWBfQtZ5DHSyrJiUIU7wU" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AA Parfume — Wangi Elegan, Harga Bersahabat</title>
+  <meta name="description" content="AA Parfume — Wangi Elegan, Harga Bersahabat. Koleksi parfum mewah dengan bahan pilihan dan harga bersahabat.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --text:#111111;
+      --muted:#6b6b6b;
+      --accent:#b89245;
+      --black:#000000;
+      --card:rgba(255,255,255,0.85);
+    }
+    body{
+      margin:0;font-family:Inter,system-ui,Arial;color:var(--text);scroll-behavior:smooth;overflow-x:hidden;
+      background:#000;
+    }
+    a{text-decoration:none;color:inherit}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 6%;position:fixed;left:0;right:0;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);box-shadow:0 2px 8px rgba(16,16,16,0.05)}
+    .logo{font-family:Playfair Display,serif;font-weight:700;font-size:20px;color:var(--accent)}
+    nav a{margin-left:18px;font-weight:600;position:relative}
+    nav a::after{content:'';display:block;height:2px;width:0;background:var(--accent);transition:.3s;position:absolute;left:0;bottom:-4px}
+    nav a:hover::after{width:100%}
+    .btn{display:inline-block;padding:10px 18px;border-radius:10px;font-weight:600;cursor:pointer;transition:all .3s ease}
+    .btn-primary{background:var(--black);color:#fff}
+    .btn-primary:hover{background:var(--accent)}
+    .btn-ghost{border:1px solid rgba(17,17,17,0.08); color: #fff; background: rgba(255,255,255,0.1);}
+    .btn-ghost:hover{background:rgba(255,255,255,0.2);}
+    
+    /* Animasi untuk tombol saat diklik */
+    .btn:active {
+      transform: scale(0.95);
+      transition: transform 0.1s ease;
+    }
+    
+    .hero{padding:120px 6% 60px;display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:center;animation:fadeIn 1s ease}
+    .hero h1{font-family:Playfair Display;font-size:44px;margin:0 0 10px;color:#fff}
+    .hero p{color:#ccc;margin-bottom:20px}
+    .hero img{width:100%;border-radius:18px;object-fit:cover;min-height:320px;animation:float 5s ease-in-out infinite}
+    section{padding:64px 6%;animation:fadeUp 1s ease forwards;opacity:0;position:relative;z-index:1}
+    section.visible{opacity:1}
+    .pill{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(184,146,69,0.12);color:var(--accent);font-weight:600;margin-bottom:12px}
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+    .product{background:var(--card);padding:16px;border-radius:12px;transition:.3s;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+    .product:hover{transform:translateY(-6px);box-shadow:0 6px 20px rgba(0,0,0,0.1)}
+    .product img{width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:12px;transition:.4s}
+    .product img:hover{transform:scale(1.05)}
+    .price{font-weight:700;color:var(--black)}
+    footer{padding:36px 6%;border-top:1px solid rgba(16,16,16,0.05);display:flex;justify-content:space-between;align-items:center;background:#111;color:#fff;z-index:1;position:relative}
+    footer div{color:#fff}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    
+    /* Login Overlay */
+    #loginOverlay{position:fixed;top:0;left:0;right:0;bottom:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:9999;animation:fadeOverlay 1s ease forwards}
+    #loginOverlay h1{font-family:Playfair Display;font-size:36px;color:var(--accent);animation:zoomIn 2s ease forwards}
+    @keyframes fadeOverlay{from{opacity:1}to{opacity:1}}
+    @keyframes zoomIn{0%{transform:scale(0.5);opacity:0}100%{transform:scale(1);opacity:1}}
+    
+    /* Testimoni Styles */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .testimonial {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: var(--text);
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .author-info h4 {
+      margin: 0;
+      color: var(--text);
+    }
+    .author-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9em;
+    }
+    
+    /* FAQ Styles */
+    .faq-container {
+      max-width: 800px;
+      margin: 30px auto 0;
+    }
+    .faq-item {
+      background: var(--card);
+      margin-bottom: 10px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 15px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text);
+    }
+    .faq-item.active .faq-answer {
+      padding: 0 20px 20px;
+      max-height: 200px;
+    }
+    
+    /* Loading Animation */
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Overlay -->
+  <div id="loginOverlay">
+    <h1>AA Parfume</h1>
+  </div>
+
+  <header>
+    <div class="logo">AA Parfume</div>
+    <nav>
+      <a href="#tentang">Tentang</a>
+      <a href="#katalog">Katalog</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontak">Kontak</a>
+      <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Wangi Elegan, Harga Bersahabat</h1>
+      <p>AA Parfume menyajikan rangkaian aroma mewah dengan harga ramah kantong. Pilih parfum favoritmu sekarang.</p>
+      <a class="btn btn-primary" href="#katalog">Lihat Katalog</a>
+      <a class="btn btn-ghost" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
+    </div>
+    <div>
+      <img src="gambar/image2.jpg" alt="Banner AA Parfume dengan botol parfum elegan">
+    </div>
+  </section>
+
+  <!-- TENTANG KAMI -->
+  <section id="tentang">
+    <div class="pill">Tentang Kami</div>
+    <h2 style="font-family:Playfair Display;color:#fff">Kisah & Visi Misi</h2>
+    <p style="color:#ccc">AA Parfume lahir dari keinginan untuk menghadirkan parfum berkualitas tinggi dengan harga terjangkau. Kami percaya bahwa wangi elegan adalah hak semua orang.</p>
+    <h3 style="color:#fff">Visi</h3>
+    <p style="color:#ccc">Menjadi brand parfum lokal unggulan yang dipercaya masyarakat karena kualitas dan konsistensi aroma.</p>
+    <h3 style="color:#fff">Misi</h3>
+    <ul style="color:#ccc">
+      <li>Menghadirkan parfum dengan bahan pilihan berkualitas.</li>
+      <li>Menawarkan harga bersahabat untuk semua kalangan.</li>
+      <li>Memberikan pelayanan terbaik dengan komitmen kepuasan pelanggan.</li>
+      <li>Terus berinovasi menghadirkan aroma baru yang sesuai tren.</li>
+      <li>Membangun kepercayaan dengan transparansi dan integritas.</li>
+    </ul>
+  </section>
+
+  <!-- KATALOG -->
+  <section id="katalog">
+    <div class="pill">Katalog</div>
+    <h2 style="font-family:Playfair Display;color:#fff">Produk Kami</h2>
+    <div class="products-grid">
+      <article class="product">
+        <img src="gambar/image1.jpg" alt="Produk AA Parfume Roll On">
+        <h3>AA Parfume Roll On</h3>
+        <div class="price">Rp 9.150</div>
+        <p>Minyak wangi roll on praktis, mudah dibawa kemana saja. Ukuran 12ml.</p>
+        <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
+      </article>
+
+      <article class="product">
+        <img src="gambar/image6.jpg" alt="Produk AA Parfume Spray">
+        <h3>AA Parfume Spray</h3>
+        <div class="price">Rp 25.900</div>
+        <p>Minyak wangi spray elegan dengan aroma tahan lama. Ukuran 50ml.</p>
+        <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
+      </article>
+
+      <article class="product">
+        <img src="gambar/image5.jpg" alt="Produk AA Parfume Premium">
+        <h3>AA Parfume Roll on 8ml Premium</h3>
+        <div class="price">Rp 14.000</div>
+        <p>Koleksi parfum premium dengan aroma mewah khas AA Parfume. Ukuran 100ml.</p>
+        <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
+      </article>
+
+      <article class="product">
+        <img src="gambar/image4.jpg" alt="Produk AA Parfume Travel Size">
+        <h3>AA Parfume Travel Size</h3>
+        <div class="price">Rp 9.150</div>
+        <p>Parfum ukuran mini untuk menemani perjalananmu. Ukuran 10ml.</p>
+        <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
+      </article>
+
+      <article class="product">
+        <img src="gambar/image7.jpg" alt="Produk AA Parfume Exclusive Edition">
+        <h3>AA Parfume Exclusive Edition</h3>
+        <div class="price">Rp 15.000</div>
+        <p>Edisi eksklusif dengan aroma khas yang diracik terbatas untuk pecinta parfum sejati. Ukuran 120ml.</p>
+        <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section id="testimoni">
+    <div class="pill">Testimoni</div>
+    <h2 style="font-family:Playfair Display;color:#fff">Apa Kata Pelanggan Kami</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-text">
+          "Aromanya tahan lama banget, seharian kerja masih tercium wanginya. Packingnya juga rapi, pengiriman cepat."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info">
+            <h4>Alirosinah</h4>
+            <p>Pengguna shopee</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-text">
+          "Harganya terjangkau tapi kualitasnya premium. Saya sudah coba beberapa varian dan semuanya memuaskan."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <h4>Andi Pratama</h4>
+            <p>langganan</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-text">
+          "Wanginya elegan dan tidak terlalu menyengat. Cocok untuk dipakai sehari-hari maupun acara formal."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div class="author-info">
+            <h4>anggita</h4>
+            <p>Pengguna shopee</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="pill">FAQ</div>
+    <h2 style="font-family:Playfair Display;color:#fff">Pertanyaan Umum</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question">Berapa lama ketahanan aroma parfum AA Parfume?</div>
+        <div class="faq-answer">
+          <p>Ketahanan aroma bervariasi tergantung jenis kulit dan kondisi lingkungan, namun rata-rata bertahan 6-8 jam untuk varian premium.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Apakah tersedia parfum untuk pria dan wanita?</div>
+        <div class="faq-answer">
+          <p>Ya, kami memiliki koleksi untuk pria, wanita, dan unisex yang cocok untuk semua kalangan.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Bagaimana cara pemesanan?</div>
+        <div class="faq-answer">
+          <p>Anda dapat memesan melalui Shopee kami atau menghubungi langsung via WhatsApp untuk pemesanan custom.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Apakah ada garansi untuk produk?</div>
+        <div class="faq-answer">
+          <p>Kami memberikan garansi 100% jika produk rusak selama pengiriman. Silakan hubungi customer service kami.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Berapa lama waktu pengiriman?</div>
+        <div class="faq-answer">
+          <p>Pengiriman reguler memakan waktu 2-5 hari kerja tergantung lokasi. Expedited shipping tersedia untuk pengiriman lebih cepat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section id="kontak">
+    <div class="pill">Kontak</div>
+    <h2 style="font-family:Playfair Display;color:#fff">Hubungi Kami</h2>
+    <p style="color:#ccc">Email: <a href="mailto:brilianabid@gmail.com">brilianabid@gmail.com</a></p>
+    <p style="color:#ccc">WhatsApp: <a href="https://wa.me/6283166584901" target="_blank">+62 831-6658-4901</a></p>
+    <p style="color:#ccc">Instagram: <a href="" target="_blank">@Langit_terang7</https://www.instagram.com/langit_terang7?igsh=MW90dDRvM21wMGc2cw==></p>
+  </section>
+
+  <footer>
+    <div>© AA Parfume</div>
+    <div>HAK CIPTA AGEN AA PARFUME</div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top">↑</div>
+
+  <!-- Particles.js background -->
+  <div id="particles-js" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0"></div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Intersection animations
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    // Remove login overlay after delay
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loginOverlay').style.display = 'none';
+      }, 2500);
+    });
+
+    // Particles config
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 60 },
+        size: { value: 3 },
+        move: { speed: 1 },
+        line_linked: { enable: true, color: '#b89245' },
+        color: { value: '#b89245' }
+      }
+    });
+
+    // FAQ functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentNode;
+        item.classList.toggle('active');
+      });
+    });
+
+    // Back to top button
+    const backToTopButton = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Loading animation for buttons
+    document.querySelectorAll('.btn-primary').forEach(button => {
+      button.addEventListener('click', function(e) {
+        if (this.getAttribute('href') === '#katalog') return; // Skip for internal links
+        
+        const originalText = this.innerHTML;
+        this.innerHTML = '<span class="loading-spinner"></span>Memproses...';
+        this.style.pointerEvents = 'none';
+        
+        setTimeout(() => {
+          this.innerHTML = originalText;
+          this.style.pointerEvents = 'auto';
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>
