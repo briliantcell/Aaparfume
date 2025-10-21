@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="image65-removebg-preview.png">
+  
   <style>
     :root{
       --text:#111111;
@@ -23,7 +27,8 @@
     }
     a{text-decoration:none;color:inherit}
     header{display:flex;align-items:center;justify-content:space-between;padding:20px 6%;position:fixed;left:0;right:0;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);box-shadow:0 2px 8px rgba(16,16,16,0.05)}
-    .logo{font-family:Playfair Display,serif;font-weight:700;font-size:20px;color:var(--accent)}
+    .logo{font-family:Playfair Display,serif;font-weight:700;font-size:20px;color:var(--accent);display:flex;align-items:center;gap:10px;}
+    .logo-img{height:40px;width:auto;object-fit:contain;}
     nav a{margin-left:18px;font-weight:600;position:relative}
     nav a::after{content:'';display:block;height:2px;width:0;background:var(--accent);transition:.3s;position:absolute;left:0;bottom:-4px}
     nav a:hover::after{width:100%}
@@ -199,7 +204,10 @@
   </div>
 
   <header>
-    <div class="logo">AA Parfume</div>
+    <div class="logo">
+      <img src="image65-removebg-preview.png" alt="AA Parfume Logo" class="logo-img">
+      AA Parfume
+    </div>
     <nav>
       <a href="#tentang">Tentang</a>
       <a href="#katalog">Katalog</a>
@@ -219,7 +227,7 @@
       <a class="btn btn-ghost" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
     </div>
     <div>
-      <img src="image2.jpg" alt="Banner AA Parfume dengan botol parfum elegan">
+      <img src="gambar/image2.jpg" alt="Banner AA Parfume dengan botol parfum elegan">
     </div>
   </section>
 
@@ -246,42 +254,42 @@
     <h2 style="font-family:Playfair Display;color:#fff">Produk Kami</h2>
     <div class="products-grid">
       <article class="product">
-        <img src="image1.jpg" alt="Produk AA Parfume Roll On">
+        <img src="gambar/image1.jpg" alt="Produk AA Parfume Roll On">
         <h3>AA Parfume Roll On</h3>
         <div class="price">Rp 9.150</div>
-        <p>Minyak wangi roll on praktis, mudah dibawa kemana saja. Ukuran 6ml.</p>
+        <p>Minyak wangi roll on praktis, mudah dibawa kemana saja. Ukuran 12ml.</p>
         <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
       </article>
 
       <article class="product">
-        <img src="image6.jpg" alt="Produk AA Parfume Spray">
+        <img src="gambar/image6.jpg" alt="Produk AA Parfume Spray">
         <h3>AA Parfume Spray</h3>
         <div class="price">Rp 25.900</div>
-        <p>Minyak wangi spray elegan dengan aroma tahan lama. Ukuran 20ml.</p>
+        <p>Minyak wangi spray elegan dengan aroma tahan lama. Ukuran 50ml.</p>
         <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
       </article>
 
       <article class="product">
-        <img src="image5.jpg" alt="Produk AA Parfume Premium">
+        <img src="gambar/image5.jpg" alt="Produk AA Parfume Premium">
         <h3>AA Parfume Roll on 8ml Premium</h3>
         <div class="price">Rp 14.000</div>
-        <p>Koleksi parfum premium dengan aroma mewah khas AA Parfume. Ukuran 8ml.</p>
+        <p>Koleksi parfum premium dengan aroma mewah khas AA Parfume. Ukuran 100ml.</p>
         <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
       </article>
 
       <article class="product">
-        <img src="image4.jpg" alt="Produk AA Parfume Travel Size">
+        <img src="gambar/image4.jpg" alt="Produk AA Parfume Travel Size">
         <h3>AA Parfume Travel Size</h3>
         <div class="price">Rp 9.150</div>
-        <p>Parfum ukuran mini untuk menemani perjalananmu. Ukuran 6ml.</p>
+        <p>Parfum ukuran mini untuk menemani perjalananmu. Ukuran 10ml.</p>
         <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
       </article>
 
       <article class="product">
-        <img src="image7.jpg" alt="Produk AA Parfume Exclusive Edition">
+        <img src="gambar/image7.jpg" alt="Produk AA Parfume Exclusive Edition">
         <h3>AA Parfume Exclusive Edition</h3>
         <div class="price">Rp 15.000</div>
-        <p>Edisi eksklusif dengan aroma khas yang diracik terbatas untuk pecinta parfum sejati. Ukuran 6ml premium quality.</p>
+        <p>Edisi eksklusif dengan aroma khas yang diracik terbatas untuk pecinta parfum sejati. Ukuran 120ml.</p>
         <a class="btn btn-primary" href="http://shopee.co.id/agenaaparfume" target="_blank">Beli di Shopee</a>
       </article>
     </div>
@@ -381,7 +389,7 @@
     <h2 style="font-family:Playfair Display;color:#fff">Hubungi Kami</h2>
     <p style="color:#ccc">Email: <a href="mailto:brilianabid@gmail.com">brilianabid@gmail.com</a></p>
     <p style="color:#ccc">WhatsApp: <a href="https://wa.me/6283166584901" target="_blank">+62 831-6658-4901</a></p>
-    <p style="color:#ccc">Instagram: <a href="" target="_blank">@Langit_terang7</https://www.instagram.com/langit_terang7?igsh=MW90dDRvM21wMGc2cw==></p>
+    <p style="color:#ccc">Instagram: <a href="https://www.instagram.com/langit_terang7?igsh=MW90dDRvM21wMGc2cw==" target="_blank">@Langit_terang7</a></p>
   </section>
 
   <footer>
@@ -464,8 +472,4 @@
     });
   </script>
 </body>
-</html>
-
-
-
-
+</htm
