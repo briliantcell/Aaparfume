@@ -723,6 +723,54 @@
             font-size: 18px;
         }
 
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: background 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .main-content {
@@ -756,6 +804,29 @@
         @media (max-width: 768px) {
             .header-center {
                 margin: 0 16px;
+                flex: 0 1 auto;
+            }
+            
+            .search-container {
+                flex: 1;
+                min-width: 0;
+            }
+            
+            .search-input {
+                font-size: 14px;
+                padding: 0 12px;
+            }
+            
+            .voice-search {
+                display: none;
+            }
+            
+            .header-right {
+                gap: 4px;
+            }
+            
+            .header-icon {
+                padding: 6px;
             }
             
             .main-content {
@@ -808,6 +879,10 @@
             .testimonial-item {
                 flex: 0 0 200px;
             }
+            
+            .logo span {
+                display: none;
+            }
         }
 
         .close-sidebar {
@@ -837,6 +912,12 @@
             Your browser does not support the video tag.
         </video>
         <button class="skip-intro" onclick="skipIntro()">Lewati Intro</button>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img class="lightbox-content" id="lightboxImage" src="" alt="Product Image">
     </div>
 
     <!-- Header -->
@@ -994,7 +1075,7 @@
             <div class="video-grid">
                 <!-- Product 1 -->
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="openLightbox('image2.jpg')">
                         <img src="image2.jpg" alt="Parfume Roll On">
                         <span class="video-duration">Rp 15.000</span>
                     </div>
@@ -1008,7 +1089,7 @@
                                 <div class="channel-name">Aa Parfume</div>
                                 <div>Terjual 1.2K • Tahan 8 jam</div>
                             </div>
-                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank">
+                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Roll On Premium - Aroma Musk')">
                                 <i class="material-icons">shopping_cart</i>
                                 Beli di Shopee
                             </a>
@@ -1018,7 +1099,7 @@
 
                 <!-- Product 2 -->
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="openLightbox('image-10.jpg')">
                         <img src="image-10.jpg" alt="Parfume Spray">
                         <span class="video-duration">Rp 25.000</span>
                     </div>
@@ -1032,7 +1113,7 @@
                                 <div class="channel-name">Aa Parfume</div>
                                 <div>Terjual 890 • Tahan 12 jam</div>
                             </div>
-                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank">
+                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Spray Elegant - Floral Bouquet')">
                                 <i class="material-icons">shopping_cart</i>
                                 Beli di Shopee
                             </a>
@@ -1042,7 +1123,7 @@
 
                 <!-- Product 3 -->
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="openLightbox('image-9.jpg')">
                         <img src="image-9.jpg" alt="Parfume Arabic">
                         <span class="video-duration">Rp 15.000</span>
                     </div>
@@ -1056,7 +1137,7 @@
                                 <div class="channel-name">Aa Parfume</div>
                                 <div>Terjual 2.1K • Tahan 24 jam</div>
                             </div>
-                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank">
+                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Arabic Oud - Royal Series')">
                                 <i class="material-icons">shopping_cart</i>
                                 Beli di Shopee
                             </a>
@@ -1066,7 +1147,7 @@
 
                 <!-- Product 4 -->
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="openLightbox('image-55.jpg')">
                         <img src="image-55.jpg" alt="Parfume Eropa">
                         <span class="video-duration">Rp 18.000</span>
                     </div>
@@ -1080,7 +1161,7 @@
                                 <div class="channel-name">Aa Parfume</div>
                                 <div>Terjual 756 • Import Quality</div>
                             </div>
-                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank">
+                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Eropa Classic - French Inspiration')">
                                 <i class="material-icons">shopping_cart</i>
                                 Beli di Shopee
                             </a>
@@ -1090,7 +1171,7 @@
 
                 <!-- Product 5 -->
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="openLightbox('image-11.jpg')">
                         <img src="image-11.jpg" alt="Parfume Supplier">
                         <span class="video-duration">Hubungi</span>
                     </div>
@@ -1104,7 +1185,7 @@
                                 <div class="channel-name">Aa Parfume</div>
                                 <div> • Harga khusus</div>
                             </div>
-                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank">
+                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Supplier Partnership - Grosir')">
                                 <i class="material-icons">shopping_cart</i>
                                 Beli di Shopee
                             </a>
@@ -1114,7 +1195,7 @@
 
                 <!-- Product 6 -->
                 <div class="video-card">
-                    <div class="video-thumbnail">
+                    <div class="video-thumbnail" onclick="openLightbox('image-8.jpg')">
                         <img src="image-8.jpg" alt="Parfume Limited">
                         <span class="video-duration">Rp 25.000</span>
                     </div>
@@ -1128,7 +1209,7 @@
                                 <div class="channel-name">Aa Parfume</div>
                                 <div>Terjual 445 • Edisi terbatas</div>
                             </div>
-                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank">
+                            <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Limited Edition - Signature Scent')">
                                 <i class="material-icons">shopping_cart</i>
                                 Beli di Shopee
                             </a>
@@ -1144,33 +1225,33 @@
             <p>Koleksi parfume roll on dengan berbagai pilihan aroma yang tahan lama.</p>
             <div class="category-grid">
                 <div class="category-item">
-                    <img src="image1.jpg" alt="Roll On 1" class="category-image">
+                    <img src="image1.jpg" alt="Roll On 1" class="category-image" onclick="openLightbox('image1.jpg')">
                     <div class="category-info">
                         <div class="category-title">Roll On Musk</div>
                         <div class="category-description">Aroma musk yang elegan dan tahan lama hingga 8 jam.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Roll On Musk')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image54.jpg" alt="Roll On 2" class="category-image">
+                    <img src="image54.jpg" alt="Roll On 2" class="category-image" onclick="openLightbox('image54.jpg')">
                     <div class="category-info">
                         <div class="category-title">Roll On Floral</div>
                         <div class="category-description">Aroma bunga-bunga yang segar dan feminin.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Roll On Floral')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="Picsart.jpg" alt="Roll On 3" class="category-image">
+                    <img src="Picsart.jpg" alt="Roll On 3" class="category-image" onclick="openLightbox('Picsart.jpg')">
                     <div class="category-info">
                         <div class="category-title">Roll On Citrus</div>
                         <div class="category-description">Aroma citrus yang menyegarkan dan energik.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Roll On Citrus')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
@@ -1185,33 +1266,33 @@
             <p>Koleksi parfume spray dengan kemasan elegan dan aroma yang memikat.</p>
             <div class="category-grid">
                 <div class="category-item">
-                    <img src="image-sprai.jpeg" alt="Spray 1" class="category-image">
+                    <img src="image-sprai.jpeg" alt="Spray 1" class="category-image" onclick="openLightbox('image-sprai.jpeg')">
                     <div class="category-info">
                         <div class="category-title">Spray Floral Bouquet</div>
                         <div class="category-description">Paduan aroma bunga yang sempurna untuk sehari-hari.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Spray Floral Bouquet')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image-30.jpg" alt="Spray 2" class="category-image">
+                    <img src="image-30.jpg" alt="Spray 2" class="category-image" onclick="openLightbox('image-30.jpg')">
                     <div class="category-info">
                         <div class="category-title">Spray Woody</div>
                         <div class="category-description">Aroma kayu yang maskulin dan berkelas.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Spray Woody')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image-11.jpg" alt="Spray 3" class="category-image">
+                    <img src="image-11.jpg" alt="Spray 3" class="category-image" onclick="openLightbox('image-11.jpg')">
                     <div class="category-info">
                         <div class="category-title">Spray Fresh</div>
                         <div class="category-description">Aroma segar yang cocok untuk aktivitas outdoor.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Spray Fresh')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
@@ -1226,33 +1307,33 @@
             <p>Koleksi parfume Arabic dengan aroma khas Timur Tengah yang eksotis.</p>
             <div class="category-grid">
                 <div class="category-item">
-                    <img src="Picsart.jpg" alt="Arabic 1" class="category-image">
+                    <img src="Picsart.jpg" alt="Arabic 1" class="category-image" onclick="openLightbox('Picsart.jpg')">
                     <div class="category-info">
                         <div class="category-title">Arabic Oud</div>
                         <div class="category-description">Aroma oud autentik dengan wangi yang mewah.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Arabic Oud')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image-49.jpg" alt="Arabic 2" class="category-image">
+                    <img src="image-49.jpg" alt="Arabic 2" class="category-image" onclick="openLightbox('image-49.jpg')">
                     <div class="category-info">
                         <div class="category-title">Arabic Bakhoor</div>
                         <div class="category-description">Aroma tradisional dengan sentuhan modern.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Arabic Bakhoor')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image-10.jpg" alt="Arabic 3" class="category-image">
+                    <img src="image-10.jpg" alt="Arabic 3" class="category-image" onclick="openLightbox('image-10.jpg')">
                     <div class="category-info">
                         <div class="category-title">Arabic Amber</div>
                         <div class="category-description">Aroma amber yang hangat dan memikat.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Arabic Amber')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
@@ -1267,33 +1348,33 @@
             <p>Koleksi parfume Eropa dengan gaya kontinental yang sophisticated.</p>
             <div class="category-grid">
                 <div class="category-item">
-                    <img src="image-eropa.jpeg" alt="Eropa 1" class="category-image">
+                    <img src="image-eropa.jpeg" alt="Eropa 1" class="category-image" onclick="openLightbox('image-eropa.jpeg')">
                     <div class="category-info">
                         <div class="category-title">French Elegance</div>
                         <div class="category-description">Aroma klasik Perancis yang timeless dan elegan.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('French Elegance')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image-55.jpg" alt="Eropa 2" class="category-image">
+                    <img src="image-55.jpg" alt="Eropa 2" class="category-image" onclick="openLightbox('image-55.jpg')">
                     <div class="category-info">
                         <div class="category-title">Italian Style</div>
                         <div class="category-description">Aroma Italia yang passionate dan berkarakter.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Italian Style')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image2.jpg" alt="Eropa 3" class="category-image">
+                    <img src="image2.jpg" alt="Eropa 3" class="category-image" onclick="openLightbox('image2.jpg')">
                     <div class="category-info">
                         <div class="category-title">British Classic</div>
                         <div class="category-description">Aroma Inggris yang sophisticated dan tradisional.</div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;">
+                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('British Classic')">
                             <i class="material-icons">shopping_cart</i>
                             Beli di Shopee
                         </a>
@@ -1308,21 +1389,21 @@
             <p>Menjadi supplier Aa Parfume dengan keuntungan dan kemudahan khusus.</p>
             <div class="category-grid">
                 <div class="category-item">
-                    <img src="image-suplair.jpeg" alt="Supplier 1" class="category-image">
+                    <img src="image-suplair.jpeg" alt="Supplier 1" class="category-image" onclick="openLightbox('image-suplair.jpeg')">
                     <div class="category-info">
                         <div class="category-title">Partnership Program</div>
                         <div class="category-description">Program kemitraan dengan harga grosir khusus supplier.</div>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image-suplair2.jpeg" alt="Supplier 2" class="category-image">
+                    <img src="image-suplair2.jpeg" alt="Supplier 2" class="category-image" onclick="openLightbox('image-suplair2.jpeg')">
                     <div class="category-info">
                         <div class="category-title">MASJID AL IKHLAS</div>
                         <div class="category-description">Pemesanan dalam jumlah besar dengan diskon khusus.</div>
                     </div>
                 </div>
                 <div class="category-item">
-                    <img src="image-suplair3.jpeg" alt="Supplier 3" class="category-image">
+                    <img src="image-suplair3.jpeg" alt="Supplier 3" class="category-image" onclick="openLightbox('image-suplair3.jpeg')">
                     <div class="category-info">
                         <div class="category-title">MUSHOLA AL IKHWAN</div>
                         <div class="category-description">Dukungan penuh untuk pengembangan bisnis supplier.</div>
@@ -1641,6 +1722,59 @@
             });
         });
 
+        // Lightbox functionality
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Shopee integration with tracking
+        function trackShopeeClick(productName) {
+            // In a real implementation, this would send data to analytics
+            console.log(`Product clicked: ${productName}`);
+            
+            // Simulate API call to Shopee
+            // This is where you would integrate with Shopee's API
+            // For now, we'll just log the action
+            fetch('https://api.example.com/track-click', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product: productName,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent
+                })
+            }).catch(error => {
+                console.log('Analytics tracking failed:', error);
+            });
+        }
+
         // Product card click functionality
         const productCards = document.querySelectorAll('.video-card');
         productCards.forEach(card => {
@@ -1649,10 +1783,9 @@
                 const productPrice = this.querySelector('.video-duration').textContent;
                 
                 // Show product details (in a real app, this would open a product page)
-                alert(`Produk: ${productName}\nHarga: ${productPrice}\n\nFitur ini akan membuka halaman detail produk.`);
+                console.log(`Produk: ${productName}\nHarga: ${productPrice}`);
             });
         });
     </script>
 </body>
 </html>
-
