@@ -8,8 +8,6 @@
   <meta name="description" content="AA Parfume — Wangi Elegan, Harga Bersahabat. Koleksi parfum mewah dengan bahan pilihan dan harga bersahabat.">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="image65-removebg-preview.png" type="image/x-icon">
@@ -198,6 +196,7 @@
             background: rgba(0, 4, 40, 0.2);
         }
 
+        /* Header Right - Updated for Mobile */
         .header-right {
             display: flex;
             align-items: center;
@@ -222,6 +221,56 @@
 
         .header-icon i {
             font-size: 20px;
+        }
+
+        /* Social Media Dropdown for Mobile */
+        .social-dropdown {
+            position: relative;
+        }
+
+        .social-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            color: #000428;
+        }
+
+        .social-toggle i {
+            font-size: 20px;
+        }
+
+        .social-dropdown-content {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            min-width: 150px;
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+        }
+
+        .social-dropdown-content a {
+            padding: 12px 16px;
+            color: #000428;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+
+        .social-dropdown-content a:hover {
+            background: rgba(0, 4, 40, 0.1);
+        }
+
+        .social-dropdown-content.show {
+            display: flex;
         }
 
         /* Sidebar */
@@ -268,9 +317,9 @@
             font-weight: 500;
         }
 
-        .sidebar-item .material-icons {
+        .sidebar-item i {
             margin-right: 24px;
-            font-size: 24px;
+            font-size: 20px;
             width: 24px;
             text-align: center;
         }
@@ -458,7 +507,7 @@
             background: #E64A19;
         }
 
-        .shopee-button .material-icons {
+        .shopee-button i {
             font-size: 16px;
             margin-right: 4px;
         }
@@ -578,7 +627,7 @@
             background: rgba(0, 4, 40, 0.1);
         }
 
-        .suggestion-item .material-icons {
+        .suggestion-item i {
             margin-right: 12px;
             font-size: 18px;
             color: rgba(0, 4, 40, 0.7);
@@ -718,7 +767,7 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        .maps-button .material-icons {
+        .maps-button i {
             margin-right: 8px;
             font-size: 18px;
         }
@@ -771,6 +820,53 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .main-content {
@@ -791,7 +887,7 @@
                 font-size: 10px;
             }
             
-            .sidebar-item .material-icons {
+            .sidebar-item i {
                 margin-right: 0;
                 margin-bottom: 4px;
             }
@@ -819,6 +915,15 @@
             
             .voice-search {
                 display: none;
+            }
+            
+            /* Social Media Mobile Style */
+            .header-icon:not(.social-toggle) {
+                display: none;
+            }
+            
+            .social-toggle {
+                display: flex;
             }
             
             .header-right {
@@ -857,6 +962,14 @@
             .maps-actions {
                 flex-direction: column;
             }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -882,6 +995,20 @@
             
             .logo span {
                 display: none;
+            }
+            
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .whatsapp-tooltip {
+                font-size: 12px;
+                padding: 6px 10px;
+                right: 60px;
             }
         }
 
@@ -920,11 +1047,17 @@
         <img class="lightbox-content" id="lightboxImage" src="" alt="Product Image">
     </div>
 
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/6283166584901" class="whatsapp-float" target="_blank" id="whatsappButton">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Hubungi via WhatsApp</span>
+    </a>
+
     <!-- Header -->
     <header class="header">
         <div class="header-left">
             <button class="menu-button" onclick="toggleSidebar()">
-                <i class="material-icons">menu</i>
+                <i class="fas fa-bars"></i>
             </button>
             <div class="logo">
                 <img src="image65-removebg-preview.png" alt="Aa Parfume Logo">
@@ -936,55 +1069,81 @@
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Cari parfume..." id="searchInput">
                 <button class="search-button">
-                    <i class="material-icons">search</i>
+                    <i class="fas fa-search"></i>
                 </button>
                 <div class="search-suggestions" id="searchSuggestions">
                     <div class="suggestion-item" data-search="rollon">
-                        <i class="material-icons">local_drink</i>
+                        <i class="fas fa-tint"></i>
                         <span>Roll On</span>
                     </div>
                     <div class="suggestion-item" data-search="spray">
-                        <i class="material-icons">spray</i>
+                        <i class="fas fa-spray-can"></i>
                         <span>Spray</span>
                     </div>
                     <div class="suggestion-item" data-search="arabic">
-                        <i class="material-icons">language</i>
+                        <i class="fas fa-globe-asia"></i>
                         <span>Arabic</span>
                     </div>
                     <div class="suggestion-item" data-search="eropa">
-                        <i class="material-icons">public</i>
+                        <i class="fas fa-globe-europe"></i>
                         <span>Eropa</span>
                     </div>
                     <div class="suggestion-item" data-search="supplier">
-                        <i class="material-icons">inventory</i>
+                        <i class="fas fa-warehouse"></i>
                         <span>Supplier</span>
                     </div>
                     <div class="suggestion-item" data-search="testimoni">
-                        <i class="material-icons">reviews</i>
+                        <i class="fas fa-comment-alt"></i>
                         <span>Testimoni</span>
                     </div>
                     <div class="suggestion-item" data-search="maps">
-                        <i class="material-icons">map</i>
+                        <i class="fas fa-map-marker-alt"></i>
                         <span>Maps</span>
                     </div>
                 </div>
             </div>
             <button class="voice-search">
-                <i class="material-icons">mic</i>
+                <i class="fas fa-microphone"></i>
             </button>
         </div>
         
         <div class="header-right">
-            <button class="header-icon">
+            <!-- Social Media Dropdown for Mobile -->
+            <div class="social-dropdown">
+                <button class="social-toggle header-icon" id="socialToggle">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+                <div class="social-dropdown-content" id="socialDropdown">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/byteneshwebshop?igsh=MW90dDRvM21wMGc2cw==" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@muhamad_abid7?_r=1&_t=ZS-91izXnmElnt" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                    <a href="https://wa.me/6283166584901" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Desktop Social Icons -->
+            <button class="header-icon desktop-only" onclick="window.open('https://www.facebook.com', '_blank')">
                 <i class="fab fa-facebook"></i>
             </button>
-            <button class="header-icon">
+            <button class="header-icon desktop-only" onclick="window.open('https://www.instagram.com/byteneshwebshop?igsh=MW90dDRvM21wMGc2cw==', '_blank')">
                 <i class="fab fa-instagram"></i>
             </button>
-            <button class="header-icon">
+            <button class="header-icon desktop-only" onclick="window.open('https://www.tiktok.com/@muhamad_abid7?_r=1&_t=ZS-91izXnmElnt', '_blank')">
                 <i class="fab fa-tiktok"></i>
             </button>
-            <button class="header-icon">
+            <button class="header-icon desktop-only" onclick="window.open('https://wa.me/6283166584901', '_blank')">
                 <i class="fab fa-whatsapp"></i>
             </button>
         </div>
@@ -993,46 +1152,46 @@
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
         <button class="close-sidebar" onclick="toggleSidebar()">
-            <i class="material-icons">close</i>
+            <i class="fas fa-times"></i>
         </button>
         <div class="sidebar-section">
             <a href="#" class="sidebar-item active" data-page="home">
-                <i class="material-icons">home</i>
+                <i class="fas fa-home"></i>
                 <span>Beranda</span>
             </a>
             <a href="#" class="sidebar-item" data-page="about">
-                <i class="material-icons">spa</i>
+                <i class="fas fa-spa"></i>
                 <span>Tentang Aa Parfume</span>
             </a>
             <a href="#" class="sidebar-item" data-page="maps">
-                <i class="material-icons">map</i>
+                <i class="fas fa-map-marker-alt"></i>
                 <span>Maps & Lokasi</span>
             </a>
             <a href="#" class="sidebar-item" data-page="testimoni">
-                <i class="material-icons">reviews</i>
+                <i class="fas fa-comment-alt"></i>
                 <span>Testimoni</span>
             </a>
         </div>
         
         <div class="sidebar-section">
             <a href="#" class="sidebar-item" data-page="rollon">
-                <i class="material-icons">local_drink</i>
+                <i class="fas fa-tint"></i>
                 <span>Roll On</span>
             </a>
             <a href="#" class="sidebar-item" data-page="spray">
-                <i class="material-icons">spray</i>
+                <i class="fas fa-spray-can"></i>
                 <span>Spray</span>
             </a>
             <a href="#" class="sidebar-item" data-page="arabic">
-                <i class="material-icons">language</i>
+                <i class="fas fa-globe-asia"></i>
                 <span>Arabic</span>
             </a>
             <a href="#" class="sidebar-item" data-page="eropa">
-                <i class="material-icons">public</i>
+                <i class="fas fa-globe-europe"></i>
                 <span>Eropa</span>
             </a>
             <a href="#" class="sidebar-item" data-page="supplier">
-                <i class="material-icons">inventory</i>
+                <i class="fas fa-warehouse"></i>
                 <span>Supplier</span>
             </a>
         </div>
@@ -1040,19 +1199,19 @@
         <div class="sidebar-section">
             <div class="sidebar-title">Kategori Terpopuler</div>
             <a href="#" class="sidebar-item">
-                <i class="material-icons">whatshot</i>
+                <i class="fas fa-fire"></i>
                 <span>Terlaris</span>
             </a>
             <a href="#" class="sidebar-item">
-                <i class="material-icons">new_releases</i>
+                <i class="fas fa-star"></i>
                 <span>Produk Baru</span>
             </a>
             <a href="#" class="sidebar-item">
-                <i class="material-icons">local_offer</i>
+                <i class="fas fa-tag"></i>
                 <span>Promo</span>
             </a>
             <a href="#" class="sidebar-item">
-                <i class="material-icons">star</i>
+                <i class="fas fa-crown"></i>
                 <span>Premium</span>
             </a>
         </div>
@@ -1081,7 +1240,7 @@
                     </div>
                     <div class="video-info">
                         <div class="channel-avatar">
-                            <i class="material-icons">local_drink</i>
+                            <i class="fas fa-tint"></i>
                         </div>
                         <div class="video-details">
                             <div class="video-title">Roll On Premium - Aroma Musk</div>
@@ -1090,7 +1249,7 @@
                                 <div>Terjual 1.2K • Tahan 8 jam</div>
                             </div>
                             <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Roll On Premium - Aroma Musk')">
-                                <i class="material-icons">shopping_cart</i>
+                                <i class="fas fa-shopping-cart"></i>
                                 Beli di Shopee
                             </a>
                         </div>
@@ -1105,7 +1264,7 @@
                     </div>
                     <div class="video-info">
                         <div class="channel-avatar">
-                            <i class="material-icons">spray</i>
+                            <i class="fas fa-spray-can"></i>
                         </div>
                         <div class="video-details">
                             <div class="video-title">Spray Elegant - Floral Bouquet</div>
@@ -1114,7 +1273,7 @@
                                 <div>Terjual 890 • Tahan 12 jam</div>
                             </div>
                             <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Spray Elegant - Floral Bouquet')">
-                                <i class="material-icons">shopping_cart</i>
+                                <i class="fas fa-shopping-cart"></i>
                                 Beli di Shopee
                             </a>
                         </div>
@@ -1129,7 +1288,7 @@
                     </div>
                     <div class="video-info">
                         <div class="channel-avatar">
-                            <i class="material-icons">language</i>
+                            <i class="fas fa-globe-asia"></i>
                         </div>
                         <div class="video-details">
                             <div class="video-title">Arabic Oud - Royal Series</div>
@@ -1138,7 +1297,7 @@
                                 <div>Terjual 2.1K • Tahan 24 jam</div>
                             </div>
                             <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Arabic Oud - Royal Series')">
-                                <i class="material-icons">shopping_cart</i>
+                                <i class="fas fa-shopping-cart"></i>
                                 Beli di Shopee
                             </a>
                         </div>
@@ -1153,7 +1312,7 @@
                     </div>
                     <div class="video-info">
                         <div class="channel-avatar">
-                            <i class="material-icons">public</i>
+                            <i class="fas fa-globe-europe"></i>
                         </div>
                         <div class="video-details">
                             <div class="video-title">Eropa Classic - French Inspiration</div>
@@ -1162,7 +1321,7 @@
                                 <div>Terjual 756 • Import Quality</div>
                             </div>
                             <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Eropa Classic - French Inspiration')">
-                                <i class="material-icons">shopping_cart</i>
+                                <i class="fas fa-shopping-cart"></i>
                                 Beli di Shopee
                             </a>
                         </div>
@@ -1177,7 +1336,7 @@
                     </div>
                     <div class="video-info">
                         <div class="channel-avatar">
-                            <i class="material-icons">inventory</i>
+                            <i class="fas fa-warehouse"></i>
                         </div>
                         <div class="video-details">
                             <div class="video-title">Supplier Partnership - Grosir</div>
@@ -1186,7 +1345,7 @@
                                 <div> • Harga khusus</div>
                             </div>
                             <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Supplier Partnership - Grosir')">
-                                <i class="material-icons">shopping_cart</i>
+                                <i class="fas fa-shopping-cart"></i>
                                 Beli di Shopee
                             </a>
                         </div>
@@ -1201,7 +1360,7 @@
                     </div>
                     <div class="video-info">
                         <div class="channel-avatar">
-                            <i class="material-icons">star</i>
+                            <i class="fas fa-crown"></i>
                         </div>
                         <div class="video-details">
                             <div class="video-title">Limited Edition - Signature Scent</div>
@@ -1210,7 +1369,7 @@
                                 <div>Terjual 445 • Edisi terbatas</div>
                             </div>
                             <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Limited Edition - Signature Scent')">
-                                <i class="material-icons">shopping_cart</i>
+                                <i class="fas fa-shopping-cart"></i>
                                 Beli di Shopee
                             </a>
                         </div>
@@ -1230,7 +1389,7 @@
                         <div class="category-title">Roll On Musk</div>
                         <div class="category-description">Aroma musk yang elegan dan tahan lama hingga 8 jam.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Roll On Musk')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1241,7 +1400,7 @@
                         <div class="category-title">Roll On Floral</div>
                         <div class="category-description">Aroma bunga-bunga yang segar dan feminin.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Roll On Floral')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1252,7 +1411,7 @@
                         <div class="category-title">Roll On Citrus</div>
                         <div class="category-description">Aroma citrus yang menyegarkan dan energik.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Roll On Citrus')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1271,7 +1430,7 @@
                         <div class="category-title">Spray Floral Bouquet</div>
                         <div class="category-description">Paduan aroma bunga yang sempurna untuk sehari-hari.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Spray Floral Bouquet')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1282,7 +1441,7 @@
                         <div class="category-title">Spray Woody</div>
                         <div class="category-description">Aroma kayu yang maskulin dan berkelas.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Spray Woody')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1293,7 +1452,7 @@
                         <div class="category-title">Spray Fresh</div>
                         <div class="category-description">Aroma segar yang cocok untuk aktivitas outdoor.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Spray Fresh')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1312,7 +1471,7 @@
                         <div class="category-title">Arabic Oud</div>
                         <div class="category-description">Aroma oud autentik dengan wangi yang mewah.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Arabic Oud')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1323,7 +1482,7 @@
                         <div class="category-title">Arabic Bakhoor</div>
                         <div class="category-description">Aroma tradisional dengan sentuhan modern.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Arabic Bakhoor')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1334,7 +1493,7 @@
                         <div class="category-title">Arabic Amber</div>
                         <div class="category-description">Aroma amber yang hangat dan memikat.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Arabic Amber')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1353,7 +1512,7 @@
                         <div class="category-title">French Elegance</div>
                         <div class="category-description">Aroma klasik Perancis yang timeless dan elegan.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('French Elegance')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1364,7 +1523,7 @@
                         <div class="category-title">Italian Style</div>
                         <div class="category-description">Aroma Italia yang passionate dan berkarakter.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('Italian Style')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1375,7 +1534,7 @@
                         <div class="category-title">British Classic</div>
                         <div class="category-description">Aroma Inggris yang sophisticated dan tradisional.</div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" style="margin-top: 10px;" onclick="trackShopeeClick('British Classic')">
-                            <i class="material-icons">shopping_cart</i>
+                            <i class="fas fa-shopping-cart"></i>
                             Beli di Shopee
                         </a>
                     </div>
@@ -1429,11 +1588,11 @@
             
             <div class="maps-actions">
                 <a href="https://www.google.com/maps/dir//Agen+minyak+wangi+termurah/data=!4m8!4m7!1m0!1m5!1m1!1s0x2e69f98dc1c7bfe9:0x6aa1272259e08a96!2m2!1d106.6826853!2d-6.1849672" class="maps-button" target="_blank">
-                    <i class="material-icons">directions</i>
+                    <i class="fas fa-directions"></i>
                     Dapatkan Rute
                 </a>
                 <a href="https://www.google.com/maps/place/Agen+minyak+wangi+termurah/@-6.1849672,106.6826853,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f98dc1c7bfe9:0x6aa1272259e08a96!8m2!3d-6.1849672!4d106.6826853!16s%2Fg%2F11s7x8q9_5?entry=ttu" class="maps-button" target="_blank">
-                    <i class="material-icons">store</i>
+                    <i class="fas fa-store"></i>
                     Lihat Toko
                 </a>
             </div>
@@ -1523,7 +1682,7 @@
                 <h3>Aa Parfume</h3>
                 <p>Menjual parfume berkualitas premium dengan harga terjangkau. Berbagai pilihan aroma untuk setiap kesempatan.</p>
                 <div class="social-links">
-                    <a href="https://wa.me/6283166584901" class="social-link" target="_blank">
+                    <a href="https://www.facebook.com" class="social-link" target="_blank">
                         <i class="fab fa-facebook"></i>
                     </a>
                     <a href="https://www.instagram.com/byteneshwebshop?igsh=MW90dDRvM21wMGc2cw==" class="social-link" target="_blank">
@@ -1565,10 +1724,10 @@
             <div class="footer-section">
                 <h3>Kontak</h3>
                 <ul class="footer-links">
-                    <li><i class="material-icons" style="font-size:16px; vertical-align:middle; margin-right:8px;">place</i> Rumah No 81 Hub no yang tertera jika mau datang, Gang masjid al khoir, RT.01/RW.09, Kota Tangerang, Banten 15148</li>
-                    <li><i class="material-icons" style="font-size:16px; vertical-align:middle; margin-right:8px;">phone</i> +62 831-6658-4901</li>
-                    <li><i class="material-icons" style="font-size:16px; vertical-align:middle; margin-right:8px;">email</i> brilianabid@gmail.com</li>
-                    <li><i class="material-icons" style="font-size:16px; vertical-align:middle; margin-right:8px;">access_time</i> Buka Setiap Hari 07:00 - 19:00</li>
+                    <li><i class="fas fa-map-marker-alt" style="font-size:16px; vertical-align:middle; margin-right:8px;"></i> Rumah No 81 Hub no yang tertera jika mau datang, Gang masjid al khoir, RT.01/RW.09, Kota Tangerang, Banten 15148</li>
+                    <li><i class="fas fa-phone" style="font-size:16px; vertical-align:middle; margin-right:8px;"></i> +62 831-6658-4901</li>
+                    <li><i class="fas fa-envelope" style="font-size:16px; vertical-align:middle; margin-right:8px;"></i> brilianabid@gmail.com</li>
+                    <li><i class="fas fa-clock" style="font-size:16px; vertical-align:middle; margin-right:8px;"></i> Buka Setiap Hari 07:00 - 19:00</li>
                 </ul>
             </div>
         </div>
@@ -1623,6 +1782,27 @@
                 sidebar.classList.remove('open');
             }
         });
+
+        // Social media dropdown toggle
+        const socialToggle = document.getElementById('socialToggle');
+        const socialDropdown = document.getElementById('socialDropdown');
+        
+        if (socialToggle && socialDropdown) {
+            socialToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                socialDropdown.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                socialDropdown.classList.remove('show');
+            });
+            
+            // Prevent dropdown from closing when clicking inside
+            socialDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
 
         // Search functionality
         const searchInput = document.getElementById('searchInput');
@@ -1686,6 +1866,11 @@
             // Close sidebar on mobile after navigation
             if (window.innerWidth <= 768) {
                 document.getElementById('sidebar').classList.remove('open');
+            }
+            
+            // Close social dropdown on mobile
+            if (socialDropdown) {
+                socialDropdown.classList.remove('show');
             }
         }
 
@@ -1786,6 +1971,44 @@
                 console.log(`Produk: ${productName}\nHarga: ${productPrice}`);
             });
         });
+
+        // WhatsApp button hover effect
+        const whatsappButton = document.getElementById('whatsappButton');
+        if (whatsappButton) {
+            whatsappButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            whatsappButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        }
+
+        // Hide desktop-only icons on mobile
+        function checkScreenSize() {
+            const desktopIcons = document.querySelectorAll('.desktop-only');
+            const socialToggle = document.getElementById('socialToggle');
+            
+            if (window.innerWidth <= 768) {
+                desktopIcons.forEach(icon => {
+                    icon.style.display = 'none';
+                });
+                if (socialToggle) {
+                    socialToggle.style.display = 'flex';
+                }
+            } else {
+                desktopIcons.forEach(icon => {
+                    icon.style.display = 'flex';
+                });
+                if (socialToggle) {
+                    socialToggle.style.display = 'none';
+                }
+            }
+        }
+        
+        // Check screen size on load and resize
+        window.addEventListener('load', checkScreenSize);
+        window.addEventListener('resize', checkScreenSize);
     </script>
 </body>
 </html>
