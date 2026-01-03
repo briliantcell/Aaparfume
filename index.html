@@ -77,7 +77,7 @@
             transform: translateY(-2px);
         }
 
-        /* Header */
+        /* Header - DIUBAH untuk Mobile */
         .header {
             position: fixed;
             top: 0;
@@ -105,8 +105,11 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 50%;
-            margin-right: 16px;
+            margin-right: 12px;
             color: #000428;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .menu-button:hover {
@@ -118,43 +121,47 @@
             align-items: center;
             color: #000428;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .logo img {
-            height: 36px;
-            margin-right: 8px;
+            height: 32px;
+            margin-right: 6px;
         }
 
         .header-center {
             flex: 1;
-            max-width: 600px;
-            margin: 0 40px;
             display: flex;
             align-items: center;
+            margin: 0 12px;
+            min-width: 0; /* Penting untuk flex shrink */
         }
 
+        /* Search Container - DIUBAH untuk Mobile */
         .search-container {
             flex: 1;
             display: flex;
             height: 40px;
             position: relative;
+            min-width: 0; /* Penting untuk mencegah overflow */
         }
 
         .search-input {
             flex: 1;
             border: none;
             padding: 0 16px;
-            font-size: 16px;
+            font-size: 14px;
             border-radius: 20px;
             outline: none;
             background: rgba(0, 4, 40, 0.1);
             color: #000428;
             transition: all 0.3s;
+            min-width: 0; /* Penting untuk responsif */
         }
 
         .search-input::placeholder {
             color: rgba(0, 4, 40, 0.6);
+            font-size: 13px;
         }
 
         .search-input:focus {
@@ -190,29 +197,32 @@
             align-items: center;
             justify-content: center;
             color: #000428;
+            flex-shrink: 0;
         }
 
         .voice-search:hover {
             background: rgba(0, 4, 40, 0.2);
         }
 
-        /* Header Right - Updated for Mobile */
+        /* Header Right - DIUBAH untuk Mobile */
         .header-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
         .header-icon {
             background: none;
             border: none;
             cursor: pointer;
-            padding: 8px;
+            padding: 6px;
             border-radius: 50%;
             color: #000428;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .header-icon:hover {
@@ -220,7 +230,7 @@
         }
 
         .header-icon i {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         /* Social Media Dropdown for Mobile */
@@ -236,10 +246,11 @@
             padding: 8px;
             border-radius: 50%;
             color: #000428;
+            flex-shrink: 0;
         }
 
         .social-toggle i {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .social-dropdown-content {
@@ -273,12 +284,12 @@
             display: flex;
         }
 
-        /* Sidebar - Updated for Mobile */
+        /* Sidebar - DIUBAH untuk Mobile (70% width) */
         .sidebar {
             position: fixed;
             top: 56px;
             left: 0;
-            width: 260px;
+            width: 280px;
             height: calc(100vh - 56px);
             background: rgba(0, 4, 40, 0.98);
             overflow-y: auto;
@@ -302,7 +313,7 @@
         .sidebar-item {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
+            padding: 12px 16px;
             cursor: pointer;
             color: #ffffff;
             text-decoration: none;
@@ -320,9 +331,9 @@
         }
 
         .sidebar-item i {
-            margin-right: 16px;
-            font-size: 18px;
-            width: 24px;
+            margin-right: 12px;
+            font-size: 16px;
+            width: 20px;
             text-align: center;
             flex-shrink: 0;
         }
@@ -335,8 +346,8 @@
         }
 
         .sidebar-title {
-            padding: 8px 20px;
-            font-size: 13px;
+            padding: 8px 16px;
+            font-size: 12px;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.7);
             text-transform: uppercase;
@@ -912,7 +923,7 @@
             opacity: 1;
         }
 
-        /* Responsive Design - Updated */
+        /* Responsive Design - DIUBAH untuk Mobile */
         @media (min-width: 769px) {
             .sidebar {
                 transform: translateX(0);
@@ -933,19 +944,42 @@
             }
         }
 
+        /* Tablet */
         @media (max-width: 768px) {
-            .header-center {
-                margin: 0 16px;
-                flex: 0 1 auto;
+            .header {
+                padding: 0 8px;
             }
             
-            .search-container {
+            .header-left {
+                flex-shrink: 0;
+            }
+            
+            .logo {
+                font-size: 16px;
+            }
+            
+            .logo img {
+                height: 28px;
+                margin-right: 4px;
+            }
+            
+            .logo span {
+                white-space: nowrap;
+            }
+            
+            .header-center {
+                margin: 0 8px;
                 flex: 1;
                 min-width: 0;
             }
             
+            .search-container {
+                width: 100%;
+                min-width: 0;
+            }
+            
             .search-input {
-                font-size: 14px;
+                font-size: 13px;
                 padding: 0 12px;
             }
             
@@ -964,10 +998,16 @@
             
             .header-right {
                 gap: 4px;
+                margin-left: auto;
             }
             
             .header-icon {
                 padding: 6px;
+            }
+            
+            .sidebar {
+                width: 70%; /* DIUBAH: 70% dari layar */
+                max-width: 280px;
             }
             
             .video-grid, .category-grid {
@@ -995,17 +1035,49 @@
             }
         }
 
+        /* Mobile Phone */
         @media (max-width: 480px) {
             .header {
                 padding: 0 8px;
             }
             
+            .header-left {
+                max-width: 120px;
+            }
+            
+            .menu-button {
+                padding: 6px;
+                margin-right: 8px;
+            }
+            
+            .logo {
+                font-size: 15px;
+            }
+            
+            .logo img {
+                height: 24px;
+                margin-right: 4px;
+            }
+            
+            .logo span {
+                display: inline-block;
+                max-width: 60px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
             .header-center {
-                margin: 0 8px;
+                margin: 0 6px;
             }
             
             .search-input {
-                font-size: 14px;
+                font-size: 12px;
+                padding: 0 10px;
+            }
+            
+            .search-button {
+                width: 36px;
+                height: 36px;
             }
             
             .main-content {
@@ -1016,8 +1088,19 @@
                 flex: 0 0 200px;
             }
             
-            .logo span {
-                display: block;
+            .sidebar {
+                width: 70%; /* DIUBAH: 70% dari layar */
+                max-width: 260px;
+            }
+            
+            .sidebar-item {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            .sidebar-title {
+                padding: 6px 12px;
+                font-size: 11px;
             }
             
             .whatsapp-float {
@@ -1034,22 +1117,67 @@
                 right: 60px;
             }
             
-            .sidebar {
-                width: 280px;
+            .header-icon {
+                padding: 4px;
+            }
+            
+            .header-icon i {
+                font-size: 16px;
+            }
+            
+            .social-toggle {
+                padding: 6px;
             }
         }
 
+        /* Very Small Phones */
         @media (max-width: 360px) {
+            .header {
+                padding: 0 4px;
+            }
+            
+            .logo span {
+                display: none; /* Sembunyikan teks logo di HP sangat kecil */
+            }
+            
+            .logo img {
+                margin-right: 0;
+            }
+            
+            .menu-button {
+                margin-right: 4px;
+            }
+            
+            .header-center {
+                margin: 0 4px;
+            }
+            
+            .search-input {
+                font-size: 11px;
+                padding: 0 8px;
+            }
+            
+            .search-input::placeholder {
+                font-size: 11px;
+            }
+            
             .sidebar {
-                width: 100%;
+                width: 70%; /* DIUBAH: 70% dari layar */
+                max-width: 240px;
             }
             
             .sidebar-item {
-                padding: 14px 16px;
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+            
+            .sidebar-item i {
+                margin-right: 8px;
+                font-size: 14px;
             }
             
             .sidebar-title {
-                padding: 8px 16px;
+                padding: 6px 10px;
             }
         }
 
@@ -1064,6 +1192,7 @@
             display: block;
             z-index: 1001;
             font-size: 20px;
+            padding: 5px;
         }
 
         /* Overlay untuk mobile */
@@ -1604,26 +1733,10 @@
                             </span>
                         </div>
                         <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Spray Woody')">
-                            <i class="fas fa-shopping-cart"></i>
-                            Beli di Shopee
-                        </a>
-                    </div>
-                </div>
-                <div class="category-item">
-                    <img src="image-11.jpg" alt="Spray 3" class="category-image" onclick="openLightbox('image-11.jpg')">
-                    <div class="category-info">
-                        <div class="category-title">Spray Fresh</div>
-                        <div class="category-description">Aroma segar yang cocok untuk aktivitas outdoor.</div>
-                        <div class="sales-info" style="margin-bottom: 10px;">
-                            <span class="sales-badge">
-                                <i class="fas fa-bolt"></i>
-                                Terjual 4.1K+
-                            </span>
+                                <i class="fas fa-shopping-cart"></i>
+                                Beli di Shopee
+                            </a>
                         </div>
-                        <a href="https://s.shopee.co.id/9fDNZImMXj" class="shopee-button" target="_blank" onclick="trackShopeeClick('Spray Fresh')">
-                            <i class="fas fa-shopping-cart"></i>
-                            Beli di Shopee
-                        </a>
                     </div>
                 </div>
             </div>
@@ -2190,7 +2303,10 @@
             if (activeChip) activeChip.classList.add('active');
             
             // Close sidebar on mobile after navigation
-            toggleSidebar();
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('open')) {
+                toggleSidebar();
+            }
             
             // Close social dropdown on mobile
             if (socialDropdown) {
